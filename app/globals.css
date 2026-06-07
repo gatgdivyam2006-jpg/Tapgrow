@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --navy: #0f172a;
+  --emerald: #10b981;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--navy);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.depth-stage {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.depth-card {
+  position: relative;
+  transform: translateZ(0);
+  transition:
+    transform 320ms ease,
+    box-shadow 320ms ease,
+    border-color 320ms ease;
+}
+
+.depth-card:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow:
+    0 34px 90px rgba(15, 23, 42, 0.16),
+    0 18px 44px rgba(16, 185, 129, 0.12);
+  transform: translateY(-8px) rotateX(1.5deg) rotateY(-1.5deg);
+}
+
+.glass-shine::before {
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.62) 45%,
+    transparent 62%
+  );
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-55%);
+  transition: opacity 300ms ease, transform 650ms ease;
+}
+
+.glass-shine:hover::before {
+  opacity: 1;
+  transform: translateX(55%);
+}
+
+.premium-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
